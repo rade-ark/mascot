@@ -9,10 +9,10 @@ class PDFParser(BaseParser):
 
     def parse(self, file_path: str) -> RawDocument:
         with fitz.open(file_path) as doc:
-    pages = [page.get_text() for page in doc]
-        text = "\n\n".join(pages)
+            pages = [page.get_text() for page in doc]
+            text = "\n\n".join(pages)
 
-        # If text is sparse, the PDF is likely scanned — hand off to OCR
+        # If text is sparse, the PDF is likely scanned and needs OCR
         if len(text.strip()) < 100:
             from .ocr_parser import OCRParser
             return OCRParser().parse(file_path)
