@@ -5,7 +5,7 @@ from ingestion.schema import RawDocument
 
 class DOCXParser(BaseParser):
     def can_parse(self, file_path: str) -> bool:
-        return Path(file_path).suffix.lower() in (".docx", ".doc")
+        return Path(file_path).suffix.lower() == ".docx"
 
     def parse(self, file_path: str) -> RawDocument:
         doc = docx.Document(file_path)

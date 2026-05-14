@@ -10,7 +10,7 @@ class RawDocument(BaseModel):
     source_path: str
     content_type: str           # "pdf", "docx", "html", "txt"
     raw_text: str
-    metadata: dict = {}
+    metadata: dict = Field(default_factory=dict)
     ingested_at: datetime = Field(default_factory=datetime.utcnow)
 
 class Chunk(BaseModel):
@@ -19,4 +19,4 @@ class Chunk(BaseModel):
     text: str
     chunk_index: int
     token_count: int
-    metadata: dict = {}         # inherits + chunk-level keys
+    metadata: dict = Field(default_factory=dict)         # inherits + chunk-level keys

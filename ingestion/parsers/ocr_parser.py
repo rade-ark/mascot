@@ -1,5 +1,9 @@
+import os
 import pytesseract
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+
+tesseract_path = os.environ.get("TESSERACT_PATH", r"C:\Program Files\Tesseract-OCR\tesseract.exe")
+pytesseract.pytesseract.tesseract_cmd = tesseract_path
+
 from pdf2image import convert_from_path
 from PIL import Image, ImageFilter, ImageEnhance
 import numpy as np

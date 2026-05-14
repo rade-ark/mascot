@@ -8,8 +8,8 @@ class PDFParser(BaseParser):
         return Path(file_path).suffix.lower() == ".pdf"
 
     def parse(self, file_path: str) -> RawDocument:
-        doc = fitz.open(file_path)
-        pages = [page.get_text() for page in doc]
+        with fitz.open(file_path) as doc:
+    pages = [page.get_text() for page in doc]
         text = "\n\n".join(pages)
 
         # If text is sparse, the PDF is likely scanned — hand off to OCR
